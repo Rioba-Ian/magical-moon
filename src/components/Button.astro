@@ -1,0 +1,11 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { cn } from "../utils";
+
+interface Props extends HTMLAttributes<"button"> {}
+const { ...props } = Astro.props;
+---
+
+<button class={cn("grid place-items-center")} {...props}>
+ <slot />
+</button>
