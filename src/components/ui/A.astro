@@ -1,6 +1,6 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { cn } from "../utils";
+import { cn } from "../../utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
 const anchorVariants = cva("", {
@@ -9,6 +9,7 @@ const anchorVariants = cva("", {
    explore:
     "explore uppercase relative font-font-serif z-1  text-dark bg-white px-8 aspect-square grid rounded-full after:contents-none after:absolute after:w-full after:h-full after:rounded-full after:-z-1 after:bg-white/15 ",
    primary: "text-white underline ",
+   navbar: "text-white uppercase text-xl",
    default: "",
   },
  },
@@ -32,11 +33,15 @@ const { class: className, asChild = false, variant, ...props } = Astro.props;
 
 <style>
  .explore::after {
-  transition: transform 500ms ease-in-out;
+  opacity: 0;
+  transition:
+   opacity 500ms linear,
+   transform 750ms ease-in-out;
  }
 
  .explore:hover::after,
  .explore:focus::before {
+  opacity: 1;
   transform: scale(1.5);
  }
 </style>

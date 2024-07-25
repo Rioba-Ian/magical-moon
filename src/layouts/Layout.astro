@@ -186,5 +186,10 @@ const { title } = Astro.props;
    transition-duration: 0.01ms !important;
    scroll-behavior: auto !important;
   }
+
+  [aria-selected="true"] {
+   color: hsl(var(--clr-light));
+   border-color: hsl(var(--clr-white));
+  }
  }
 </style>

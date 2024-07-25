@@ -44,7 +44,7 @@ export default {
     lg: "1.125rem",
     xl: "1.75rem",
     "2xl": [
-     "2.rem",
+     "2rem",
      {
       lineHeight: 1.1,
      },
