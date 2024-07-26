@@ -3,25 +3,21 @@ import A from "./ui/A.astro";
 ---
 
 <nav>
- <ul class="flex gap-16">
-  <li>
-   <A href={"#"} variant={"navbar"}>
-    <span>01</span>
-    Active</A
+ <ul class="flex gap-16 font-font-sans-cond">
+  <li id="home">
+   <A href={"/"} variant={"navbar"} class={"active"}>
+    <span>00</span>
+    Home</A
    >
   </li>
-  <li>
-   <A href={"#"} variant={"navbar"}>
-    <span>02</span>
-
-    Hovered</A
-   >
+  <li id="destination">
+   <A href={"/destination"} variant={"navbar"}> <span>01</span>Destination</A>
   </li>
-  <li>
-   <A href={"#"} variant={"navbar"}>
-    <span>03</span>
-    Idle</A
-   >
+  <li id="crew">
+   <A href={"/crew"} variant={"navbar"}> <span>02</span>Crew</A>
+  </li>
+  <li id="technology">
+   <A href={"/technology"} variant={"navbar"}> <span>03</span>Technology</A>
   </li>
  </ul>
 </nav>
@@ -32,6 +28,17 @@ import A from "./ui/A.astro";
  }
 
  li {
-  @apply border-b-2 border-white/0 py-4 hover:border-white/25 focus:border-white/50 active:border-white;
+  @apply border-b-2 border-b-white/0 py-4 hover:border-white/25 focus:border-b-white active:border-b-white;
+ }
+
+ li a:focus {
+  @apply border-b-white;
+ }
+ li:target {
+  @apply border-b-white;
+ }
+
+ #home {
+  @apply border-b-white;
  }
 </style>

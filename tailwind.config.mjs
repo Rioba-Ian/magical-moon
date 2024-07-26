@@ -14,6 +14,10 @@ export default {
  content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
  theme: {
   extend: {
+   gridTemplateColumns: {
+    "container-4":
+     "minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(2rem, 1fr)",
+   },
    fontFamily: {
     "font-serif": "var(--ff-serif);",
     "font-sans-cond": "var(--ff-sans-cond);",
