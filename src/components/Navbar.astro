@@ -2,7 +2,7 @@
 import A from "./ui/A.astro";
 ---
 
-<nav>
+<nav class="hidden sm:block">
  <ul class="flex gap-16 font-font-sans-cond">
   <li id="home">
    <A href={"/"} variant={"navbar"} class={"active"}>
@@ -40,5 +40,9 @@ import A from "./ui/A.astro";
 
  #home {
   @apply border-b-white;
+ }
+
+ li:not(:nth-child(1)) {
+  @apply hidden;
  }
 </style>
