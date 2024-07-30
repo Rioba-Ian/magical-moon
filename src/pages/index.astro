@@ -8,10 +8,10 @@ import Layout from "../layouts/Layout.astro";
  <Header />
 
  <div
-  class="container mx-auto grid px-8 gap-8 border border-red-500 grid-cols-1 md:grid-cols-container-4 text-center sm:text-left"
+  class="flex-1 container container--home mx-auto grid place-items-center md:items-end px-8 gap-8 grid-cols-1 md:grid-cols-container-4 text-center sm:text-left"
   ,
  >
-  <div class="border-2 border-yellow-500 col-span-2">
+  <div class="col-span-2 w-4/5 md:space-y-8 leading-8 px-4">
    <h1
     class="text-accent font-font-sans-cond text-xl uppercase tracking-letterSpacing1"
    >
@@ -28,10 +28,14 @@ import Layout from "../layouts/Layout.astro";
    </p>
   </div>
 
-  <div class="border-2 border-purple-700">
+  <div class="">
    <A variant={"explore"} class={"px-16 inline-grid text-xl"}>Explore</A>
   </div>
  </div>
 </Layout>
 
-<style></style>
+<style>
+ .container--home {
+  padding-bottom: max(6rem, 20vh);
+ }
+</style>
