@@ -8,13 +8,26 @@ import Navbar from "./Navbar.astro";
  <div>
   <img src="/assets/shared/logo.svg" alt="Space Tourism Logo" />
  </div>
- <button
+ <button class="z-[2000] sm:hidden absolute top-8 right-4 bg-transparent"
   ><span
    class="sr-only"
    aria-controls="primary-navigation"
    aria-expanded="false">Menu</span
-  ></button
- >
+  >
+  <img
+   src="/assets/shared/icon-hamburger.svg"
+   class=""
+   id="hamburger-button"
+   alt="Menu Open"
+  />
+
+  <img
+   src="/assets/shared/icon-close.svg"
+   id="close-button"
+   class="hidden"
+   alt="Close Menu"
+  />
+ </button>
 
  <Navbar />
 </header>

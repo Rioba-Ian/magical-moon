@@ -11,10 +11,11 @@ const navItems = [
 ];
 ---
 
-<nav class="">
+<nav>
  <ul
   id="primary-navigation"
-  class="flex md:px-6 gap-2 md:gap-16 font-font-sans-cond"
+  data-visible="false"
+  class="flex gap-2 md:gap-16 font-font-sans-cond"
  >
   {
    navItems.map((item) => (
@@ -47,9 +48,7 @@ const navItems = [
  }
 
  #primary-navigation {
-  @apply bg-white/5 backdrop-blur-xl;
-  /* background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(20px); */
+  @apply bg-white/5 backdrop-blur-xl md:px-8;
  }
 
  @media (max-width: 35rem) {
@@ -58,6 +57,13 @@ const navItems = [
    padding: min(6rem, 20vh) 2rem;
    @apply flex-col z-10;
    inset: 0 0 0 20%;
+   transform: translateX(100%);
+   transition: transform 0.5s ease-in-out;
+  }
+
+  #primary-navigation[data-visible="true"] {
+   transform: translateX(0);
+   transition: transform 0.5s ease-in-out;
   }
 
   li:has(a.current) {
@@ -69,3 +75,41 @@ const navItems = [
   @apply border-b-white;
  }
 </style>
+
+<script>
+ const hamburgerButton = document.getElementById(
+  "hamburger-button"
+ ) as HTMLImageElement;
+ const nav = document.getElementById("primary-navigation") as HTMLElement;
+ const closeButton = document.getElementById(
+  "close-button"
+ ) as HTMLImageElement;
+
+ hamburgerButton.addEventListener("click", (event) => {
+  closeButton.classList.toggle("hidden");
+
+  const visibility = nav.getAttribute("data-visible");
+
+  if (visibility === "false") {
+   nav.setAttribute("data-visible", "true");
+  } else {
+   nav.setAttribute("data-visible", "false");
+  }
+
+  hamburgerButton.classList.toggle("hidden");
+ });
+
+ closeButton.addEventListener("click", (event) => {
+  closeButton.classList.toggle("hidden");
+
+  const visibility = nav.getAttribute("data-visible");
+
+  if (visibility === "true") {
+   nav.setAttribute("data-visible", "false");
+  } else {
+   nav.setAttribute("data-visible", "true");
+  }
+
+  hamburgerButton.classList.toggle("hidden");
+ });
+</script>
