@@ -12,7 +12,10 @@ const navItems = [
 ---
 
 <nav class="">
- <ul id="primary-navigation" class="flex gap-16 font-font-sans-cond">
+ <ul
+  id="primary-navigation"
+  class="flex md:px-6 gap-2 md:gap-16 font-font-sans-cond"
+ >
   {
    navItems.map((item) => (
     <li class={currentPath === item.href ? "border-b-2 border-white" : ""}>
@@ -43,12 +46,22 @@ const navItems = [
   @apply border-b-white;
  }
 
+ #primary-navigation {
+  @apply bg-white/5 backdrop-blur-xl;
+  /* background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px); */
+ }
+
  @media (max-width: 35rem) {
   #primary-navigation {
    position: fixed;
    padding: min(6rem, 20vh) 2rem;
-   @apply flex-col bg-dark z-10;
+   @apply flex-col z-10;
    inset: 0 0 0 20%;
+  }
+
+  li:has(a.current) {
+   @apply border-b-white/0;
   }
  }
 
