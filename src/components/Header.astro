@@ -4,6 +4,7 @@ import Navbar from "./Navbar.astro";
 
 <header
  class="w-full flex justify-between items-center max-w-screen-2xl px-4 py-8 mx-auto"
+ transition:persist
 >
  <div>
   <img src="/assets/shared/logo.svg" alt="Space Tourism Logo" />
@@ -16,7 +17,7 @@ import Navbar from "./Navbar.astro";
   >
   <img
    src="/assets/shared/icon-hamburger.svg"
-   class=""
+   class="focus:outline-4"
    id="hamburger-button"
    alt="Menu Open"
   />
@@ -24,7 +25,7 @@ import Navbar from "./Navbar.astro";
   <img
    src="/assets/shared/icon-close.svg"
    id="close-button"
-   class="hidden"
+   class="hidden focus:outline-4"
    alt="Close Menu"
   />
  </button>
