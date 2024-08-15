@@ -24,12 +24,14 @@ interface Props
  asChild?: boolean;
 }
 const { class: className, asChild = false, variant, ...props } = Astro.props;
+
+const Comp = asChild ? Fragment : "a";
 ---
 
-<a class={cn(anchorVariants({ variant }), className)} {...props}>
+<Comp class={cn(anchorVariants({ variant }), className)} {...props}>
  {asChild ? <slot /> : <span>{props.children}</span>}
  <slot />
-</a>
+</Comp>
 
 <style>
  .explore::after {

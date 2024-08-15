@@ -1,24 +1,32 @@
 ---
 import A from "./ui/A.astro";
+
+const currentPath = Astro.url.pathname;
+
+const navItems = [
+ { href: "/", label: "Home", metaText: "00" },
+ { href: "/destination", label: "Destination", metaText: "01" },
+ { href: "/crew", label: "Crew", metaText: "02" },
+ { href: "/technology", label: "Technology", metaText: "03" },
+];
 ---
 
 <nav class="">
  <ul id="primary-navigation" class="flex gap-16 font-font-sans-cond">
-  <li id="home">
-   <A href={"/"} variant={"navbar"} class={"active"}>
-    <span>00</span>
-    Home</A
-   >
-  </li>
-  <li id="destination">
-   <A href={"/destination"} variant={"navbar"}> <span>01</span>Destination</A>
-  </li>
-  <li id="crew">
-   <A href={"/crew"} variant={"navbar"}> <span>02</span>Crew</A>
-  </li>
-  <li id="technology">
-   <A href={"/technology"} variant={"navbar"}> <span>03</span>Technology</A>
-  </li>
+  {
+   navItems.map((item) => (
+    <li class={currentPath === item.href ? "border-b-2 border-white" : ""}>
+     <A
+      href={item.href}
+      variant={"navbar"}
+      class={`${currentPath === item.href ? "current" : ""}`}
+     >
+      <span>{item.metaText}</span>
+      {item.label}
+     </A>
+    </li>
+   ))
+  }
  </ul>
 </nav>
 
@@ -31,8 +39,7 @@ import A from "./ui/A.astro";
   @apply border-b-2 border-b-white/0 py-4 hover:border-white/50;
  }
 
- li:has(a:focus),
- li:has(a:active) {
+ li:has(a.current) {
   @apply border-b-white;
  }
 
