@@ -2,8 +2,8 @@
 import A from "./ui/A.astro";
 ---
 
-<nav class="hidden sm:block">
- <ul class="flex gap-16 font-font-sans-cond">
+<nav class="">
+ <ul id="primary-navigation" class="flex gap-16 font-font-sans-cond">
   <li id="home">
    <A href={"/"} variant={"navbar"} class={"active"}>
     <span>00</span>
@@ -28,21 +28,24 @@ import A from "./ui/A.astro";
  }
 
  li {
-  @apply border-b-2 border-b-white/0 py-4 hover:border-white/25 focus:border-b-white active:border-b-white;
+  @apply border-b-2 border-b-white/0 py-4 hover:border-white/50;
  }
 
- li a:focus {
-  @apply border-b-white;
- }
- li:target {
-  @apply border-b-white;
- }
-
- #home {
+ li:has(a:focus),
+ li:has(a:active) {
   @apply border-b-white;
  }
 
- li:not(:nth-child(1)) {
-  @apply hidden;
+ @media (max-width: 35rem) {
+  #primary-navigation {
+   position: fixed;
+   padding: min(6rem, 20vh) 2rem;
+   @apply flex-col bg-dark z-10;
+   inset: 0 0 0 20%;
+  }
+ }
+
+ li.active {
+  @apply border-b-white;
  }
 </style>
