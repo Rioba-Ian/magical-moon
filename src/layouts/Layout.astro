@@ -197,3 +197,28 @@ import { ViewTransitions } from "astro:transitions";
   }
  }
 </style>
+
+<script>
+ document.addEventListener("astro:after-swap", () => {
+  console.log("return something....");
+ });
+
+ const updateActiveLink = () => {
+  console.log("loaded.");
+
+  console.log(window.location.pathname, "window.location.pathname;");
+
+  const links = document.querySelectorAll("#primary-navigation a");
+  console.log(links, "links");
+
+  links.forEach((link) => {
+   if (link.getAttribute("href") === window.location.pathname) {
+    link.classList.add("current");
+   } else {
+    link.classList.remove("current");
+   }
+  });
+ };
+
+ document.addEventListener("astro:after-swap", () => updateActiveLink());
+</script>

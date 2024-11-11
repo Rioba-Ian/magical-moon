@@ -1,4 +1,5 @@
 ---
+import { undefined } from "astro:schema";
 import A from "./ui/A.astro";
 
 const currentPath = Astro.url.pathname;
@@ -19,7 +20,7 @@ const navItems = [
  >
   {
    navItems.map((item) => (
-    <li class={currentPath === item.href ? "border-b-2 border-white" : ""}>
+    <li>
      <A
       href={item.href}
       variant={"navbar"}
@@ -76,14 +77,10 @@ const navItems = [
  }
 </style>
 
-<script>
- const hamburgerButton = document.getElementById(
-  "hamburger-button"
- ) as HTMLImageElement;
- const nav = document.getElementById("primary-navigation") as HTMLElement;
- const closeButton = document.getElementById(
-  "close-button"
- ) as HTMLImageElement;
+<script is:inline>
+ const hamburgerButton = document.getElementById("hamburger-button");
+ const nav = document.getElementById("primary-navigation");
+ const closeButton = document.getElementById("close-button");
 
  hamburgerButton.addEventListener("click", (event) => {
   closeButton.classList.toggle("hidden");
