@@ -5,6 +5,8 @@ interface Props {
 
 const { title } = Astro.props;
 
+const selectedTab = Astro.url.hash.slice(1) || "moon";
+
 import { ViewTransitions } from "astro:transitions";
 ---
 
@@ -25,7 +27,7 @@ import { ViewTransitions } from "astro:transitions";
   <title>{title}</title>
   <ViewTransitions />
  </head>
- <body class="bg-dark">
+ <body class="bg-dark h-screen">
   <slot />
  </body>
 </html>
@@ -198,18 +200,9 @@ import { ViewTransitions } from "astro:transitions";
  }
 </style>
 
-<script>
- document.addEventListener("astro:after-swap", () => {
-  console.log("return something....");
- });
-
+<script is:inline>
  const updateActiveLink = () => {
-  console.log("loaded.");
-
-  console.log(window.location.pathname, "window.location.pathname;");
-
   const links = document.querySelectorAll("#primary-navigation a");
-  console.log(links, "links");
 
   links.forEach((link) => {
    if (link.getAttribute("href") === window.location.pathname) {
@@ -220,5 +213,24 @@ import { ViewTransitions } from "astro:transitions";
   });
  };
 
- document.addEventListener("astro:after-swap", () => updateActiveLink());
+ const tabs = document.querySelectorAll("#tabs-destination a");
+
+ document.addEventListener("astro:after-swap", () => {
+  updateActiveLink();
+ });
+
+ const getCurrentTab = () => window.location.hash.slice(1) || "moon";
+
+ tabs.forEach((tab) => {
+  tab.addEventListener("click", (e) => {
+   // Remove current class from all tabs first
+   tabs.forEach((t) => t.classList.remove("current"));
+   tabs.forEach((t) => (t.ariaSelected = false));
+
+   // Add current class to clicked tab
+   const clickedTab = e.target;
+   clickedTab.classList.add("current");
+   clickedTab.ariaSelected = true;
+  });
+ });
 </script>

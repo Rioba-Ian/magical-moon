@@ -1,15 +1,118 @@
 ---
 import Header from "../components/Header.astro";
-import Navbar from "../components/Navbar.astro";
 import A from "../components/ui/A.astro";
-import Button from "../components/ui/Button.astro";
 import Layout from "../layouts/Layout.astro";
+
+const tabs = ["moon", "mars", "europa", "titan"];
+
+const destinations = [
+ {
+  id: 1,
+  tab: "Moon",
+  img: "/assets/destination/image-moon.png",
+  description:
+   "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
+  distance: "384,400 km",
+  travel: "3 days",
+ },
+ {
+  id: 2,
+  tab: "Mars",
+  img: "/assets/destination/image-mars.png",
+  description:
+   "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
+  distance: "225 mil. km",
+  travel: "9 months",
+ },
+ {
+  id: 3,
+  tab: "Europa",
+  img: "/assets/destination/image-europa.png",
+  description:
+   "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
+  distance: "628 mil. km",
+  travel: "3 years",
+ },
+ {
+  id: 4,
+  tab: "Titan",
+  img: "/assets/destination/image-titan.png",
+  description:
+   "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
+  distance: "1.6 bil. km",
+  travel: "7 years",
+ },
+];
+
+const { selectedTab } = Astro.props;
+
+console.log(selectedTab, "selectedTab");
 ---
 
 <Layout title="Destination">
- <Header />
+ <div id="body-container" class="w-full h-screen">
+  <Header />
 
- <h1>Destination</h1>
+  <div id="dest-container" class="mx-auto w-4/5 my-8">
+   <h1
+    class="text-white/25 font-font-sans-cond text-base sm:text-lg md:text-xl font-bold uppercase tracking-letterSpacing1"
+   >
+    01 <span class="uppercase text-white/100 font-light"
+     >Pick your destination</span
+    >
+   </h1>
+
+   <main class="m-4">
+    <ul class="flex items-center gap-8" id="tabs-destination">
+     {
+      tabs?.map((tab) => (
+       <li class="uppercase font-light font-font-sans-cond">
+        <A
+         href={`/destination#${tab}`}
+         class="text-base sm:text-xl"
+         id={tab}
+         aria-selected={tab}
+        >
+         {tab}
+        </A>
+       </li>
+      ))
+     }
+    </ul>
+   </main>
+  </div>
+ </div>
 </Layout>
 
-<style></style>
+<style>
+ #body-container {
+  background-image: url(/assets/destination/background-destination-mobile.jpg);
+  background-repeat: no-repeat;
+ }
+
+ @media (min-width: 567px) {
+  #body-container {
+   background-image: url(/assets/destination/background-destination-tablet.jpg);
+  }
+ }
+
+ @media (min-width: 760px) {
+  #body-container {
+   background-image: url(/assets/destination/background-destination-desktop.jpg);
+  }
+ }
+
+ #tabs-destination li {
+  @apply border-b-2 border-b-white/0 py-4 hover:border-white/50;
+ }
+
+ #tabs-destination li > a {
+  @apply text-accent hover:text-white aria-[selected=true]:text-white;
+ }
+
+ #tabs-destination li:has(a.current) {
+  @apply border-b-2 border-b-white;
+ }
+</style>
+
+<script is:inline></script>
