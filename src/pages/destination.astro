@@ -67,6 +67,7 @@ console.log(selectedTab, "selectedTab");
      {
       tabs?.map((tab) => (
        <li class="uppercase font-light font-font-sans-cond">
+        {/* @ts-ignore */}
         <A
          href={`/destination#${tab}`}
          class="text-base sm:text-xl"
