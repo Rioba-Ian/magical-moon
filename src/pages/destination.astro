@@ -4,49 +4,6 @@ import A from "../components/ui/A.astro";
 import Layout from "../layouts/Layout.astro";
 
 const tabs = ["moon", "mars", "europa", "titan"];
-
-const destinations = [
- {
-  id: 1,
-  tab: "Moon",
-  img: "/assets/destination/image-moon.png",
-  description:
-   "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
-  distance: "384,400 km",
-  travel: "3 days",
- },
- {
-  id: 2,
-  tab: "Mars",
-  img: "/assets/destination/image-mars.png",
-  description:
-   "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
-  distance: "225 mil. km",
-  travel: "9 months",
- },
- {
-  id: 3,
-  tab: "Europa",
-  img: "/assets/destination/image-europa.png",
-  description:
-   "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
-  distance: "628 mil. km",
-  travel: "3 years",
- },
- {
-  id: 4,
-  tab: "Titan",
-  img: "/assets/destination/image-titan.png",
-  description:
-   "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
-  distance: "1.6 bil. km",
-  travel: "7 years",
- },
-];
-
-const { selectedTab } = Astro.props;
-
-console.log(selectedTab, "selectedTab");
 ---
 
 <Layout title="Destination">
@@ -80,6 +37,8 @@ console.log(selectedTab, "selectedTab");
       ))
      }
     </ul>
+
+    <div id="selected-tab-content"></div>
    </main>
   </div>
  </div>
@@ -116,4 +75,157 @@ console.log(selectedTab, "selectedTab");
  }
 </style>
 
-<script is:inline></script>
+<script>
+ const tabContentContainer = document.querySelector("#selected-tab-content");
+ const tabs = document.querySelectorAll("#tabs-destination a");
+
+ const destinations = [
+  {
+   id: 1,
+   tab: "Moon",
+   img: "/assets/destination/image-moon.png",
+   description:
+    "See our planet as you’ve never seen it before. A perfect relaxing trip away to help regain perspective and come back refreshed. While you’re there, take in some history by visiting the Luna 2 and Apollo 11 landing sites.",
+   distance: "384,400 km",
+   travel: "3 days",
+  },
+  {
+   id: 2,
+   tab: "Mars",
+   img: "/assets/destination/image-mars.png",
+   description:
+    "Don’t forget to pack your hiking boots. You’ll need them to tackle Olympus Mons, the tallest planetary mountain in our solar system. It’s two and a half times the size of Everest!",
+   distance: "225 mil. km",
+   travel: "9 months",
+  },
+  {
+   id: 3,
+   tab: "Europa",
+   img: "/assets/destination/image-europa.png",
+   description:
+    "The smallest of the four Galilean moons orbiting Jupiter, Europa is a winter lover’s dream. With an icy surface, it’s perfect for a bit of ice skating, curling, hockey, or simple relaxation in your snug wintery cabin.",
+   distance: "628 mil. km",
+   travel: "3 years",
+  },
+  {
+   id: 4,
+   tab: "Titan",
+   img: "/assets/destination/image-titan.png",
+   description:
+    "The only moon known to have a dense atmosphere other than Earth, Titan is a home away from home (just a few hundred degrees colder!). As a bonus, you get striking views of the Rings of Saturn.",
+   distance: "1.6 bil. km",
+   travel: "7 years",
+  },
+ ];
+
+ tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+   const selectedTab = window.localStorage.getItem("selectedTab") || "moon";
+   console.log(selectedTab, new Date().toLocaleTimeString(), "selectedTab");
+
+   console.log(
+    destinations?.filter((dest) => dest.tab?.toLowerCase() === selectedTab)
+   );
+
+   if (tabContentContainer) {
+    tabContentContainer.innerHTML = destinations.map((dest) => {
+     if (dest.tab?.toLowerCase() === selectedTab) {
+      return `
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+            <img
+                src="${dest.img}"
+                alt="${dest.tab}"
+                class="w-full sm:w-1/2"
+            />
+            <div class="flex flex-col gap-4 sm:w-1/2">
+                <h2 class="text-accent font-font-sans-cond text-lg sm:text-xl uppercase tracking-letterSpacing1">
+                    ${dest.tab}
+                    >
+                <span class="font-font-serif text-7xl sm:text-8xl md:text-9xl uppercase text-white block">
+                    ${dest.tab}
+                    </span>
+                    </h2>
+            <p class="text-white/50">
+                ${dest.description}
+            </p>
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+                <div class="flex flex-col gap-2">
+                    <h3 class="text-white/50">Avg. distance</h3>
+                    <p class="text-white/100">${dest.distance}</p>
+                </div>
+            </div>
+            </div>
+            </div>`;
+     }
+    });
+   }
+  });
+ });
+
+ if (document.getElementById("selected-tab-content")) {
+  const moonDest = destinations.filter(
+   (dest) => dest.tab?.toLowerCase() === "moon"
+  );
+  console.log(moonDest, "tab content has loaded....");
+  tabContentContainer?.innerHTML = `
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+            <img
+                src="${moonDest[0].img}"
+                alt="${moonDest[0].tab}"
+                class="w-full sm:w-1/2"
+            />
+            <div class="flex flex-col gap-4 sm:w-1/2">
+                <h2 class="text-accent font-font-sans-cond text-lg sm:text-xl uppercase tracking-letterSpacing1">
+                    ${moonDest[0].tab}
+                    >
+                <span class="font-font-serif text-7xl sm:text-8xl md:text-9xl uppercase text-white block">
+                    ${moonDest[0].tab}
+                    </span>
+                    </h2>
+            <p class="text-white/50">
+                ${moonDest[0].description}
+            </p>
+            <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+                <div class="flex flex-col gap-2">
+                    <h3 class="text-white/50">Avg. distance</h3>
+                    <p class="text-white/100">${moonDest[0].distance}</p>
+                </div>
+            </div>
+            </div>
+            </div>
+  `;
+ }
+ //   if (document.getElementById("selected-tab-content")) {
+ //    tabContentContainer?.innerHTML = destinations
+ //     .filter((dest) => dest.tab?.toLowerCase() === "moon")
+ //     ?.map(
+ //      (dest) =>
+ //       `<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+ //             <img
+ //                 src="${dest.img}"
+ //                 alt="${dest.tab}"
+ //                 class="w-full sm:w-1/2"
+ //             />
+ //             <div class="flex flex-col gap-4 sm:w-1/2">
+ //                 <h2 class="text-accent font-font-sans-cond text-lg sm:text-xl uppercase tracking-letterSpacing1">
+ //                     ${dest.tab}
+ //                     >
+ //                 <span class="font-font-serif text-7xl sm:text-8xl md:text-9xl uppercase text-white block">
+ //                     ${dest.tab}
+ //                     </span>
+ //                     </h2>
+ //             <p class="text-white/50">
+ //                 ${dest.description}
+ //             </p>
+ //             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
+ //                 <div class="flex flex-col gap-2">
+ //                     <h3 class="text-white/50">Avg. distance</h3>
+ //                     <p class="text-white/100">${dest.distance}</p>
+ //                 </div>
+ //             </div>
+ //             </div>
+ //             </div>`
+ //     );
+ //   }
+ //  });
+</script>

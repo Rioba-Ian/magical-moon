@@ -5,8 +5,6 @@ interface Props {
 
 const { title } = Astro.props;
 
-const selectedTab = Astro.url.hash.slice(1) || "moon";
-
 import { ViewTransitions } from "astro:transitions";
 ---
 
@@ -219,8 +217,6 @@ import { ViewTransitions } from "astro:transitions";
   updateActiveLink();
  });
 
- const getCurrentTab = () => window.location.hash.slice(1) || "moon";
-
  tabs.forEach((tab) => {
   tab.addEventListener("click", (e) => {
    // Remove current class from all tabs first
@@ -231,6 +227,7 @@ import { ViewTransitions } from "astro:transitions";
    const clickedTab = e.target;
    clickedTab.classList.add("current");
    clickedTab.ariaSelected = true;
+   window.localStorage.setItem("selectedTab", clickedTab.id);
   });
  });
 </script>
