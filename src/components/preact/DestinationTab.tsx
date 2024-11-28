@@ -10,8 +10,8 @@ export default function DestinationTab() {
   selectedTab.value = value;
  };
  return (
-  <PlanetTesimalLayout className="grid grid-cols-2">
-   <ul class="col-start-2 flex items-center gap-8 " id="tabs-destination">
+  <PlanetTesimalLayout className="">
+   <ul class=" flex items-center gap-8 " id="tabs-destination">
     {tabs?.map((tab) => (
      <li
       class="uppercase font-light font-font-sans-cond"

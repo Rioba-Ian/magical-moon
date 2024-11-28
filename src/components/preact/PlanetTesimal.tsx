@@ -2,6 +2,7 @@ import { Suspense } from "preact/compat";
 import { useSelectedTab } from "./context/use-tabs";
 import PlanetTesimalLayout from "./PlanetTesimalLayout";
 import destinations from "./destinations.json";
+import DestinationTab from "./DestinationTab";
 
 const Fallback = () => <p>Loading...</p>;
 
@@ -16,20 +17,33 @@ export default function PlanetTesimal() {
       (destination) => destination.tab.toLocaleLowerCase() === selectedTab.value
      )
      ?.map((destination) => (
-      <div class="grid grid-cols-2">
-       <img src={destination.img} alt={destination.tab} class="w-full mr-8" />
-       <div class="col-start-2 border border-green-400">
-        <h2 class="text-accent font-font-sans-cond text-lg sm:text-xl uppercase tracking-letterSpacing1">
-         {destination.tab}
-         <span class="font-font-serif text-7xl sm:text-8xl md:text-9xl uppercase text-white block">
+      <div class="grid grid-cols-2 gap-16">
+       <img src={destination.img} alt={destination.tab} class="w-4/5 mr-8" />
+       <div class={"flex flex-col justify-start gap-12"}>
+        <DestinationTab />
+        <div class=" space-y-8">
+         <h2 class="text-white font-font-serif text-lg sm:text-4xl uppercase tracking-letterSpacing1">
           {destination.tab}
-         </span>
-        </h2>
-        <p class="text-white/50">{destination.description}</p>
-        <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
-         <div class="flex flex-col gap-2">
-          <h3 class="text-white/50">Avg. distance</h3>
-          <p class="text-white/100">{destination.distance}</p>
+         </h2>
+         <p class="text-accent leading-8 tracking-wide font-light w-3/4">
+          {destination.description}
+         </p>
+
+         <hr class={"bg-accent/50 mx-auto"} />
+         <div class="flex items-center justify-between">
+          <div class="flex flex-col gap-2">
+           <h3 class="text-accent font-light uppercase font-font-sans-cond text-lg">
+            Avg. distance
+           </h3>
+           <p class="text-white text-2xl">{destination.distance}</p>
+          </div>
+
+          <div class="flex flex-col gap-2">
+           <h3 class="text-accent font-light uppercase font-font-sans-cond text-lg">
+            Est. Travel Time
+           </h3>
+           <p class="text-white text-2xl">{destination.distance}</p>
+          </div>
          </div>
         </div>
        </div>
