@@ -17,7 +17,7 @@ export default function PlanetTesimal() {
       (destination) => destination.tab.toLocaleLowerCase() === selectedTab.value
      )
      ?.map((destination) => (
-      <div class="grid grid-cols-2 gap-16">
+      <div class="flex flex-col justify-center items-center md:justify-between md:flex-row gap-16">
        <img src={destination.img} alt={destination.tab} class="w-4/5 mr-8" />
        <div class={"flex flex-col justify-start gap-12"}>
         <DestinationTab />
@@ -35,14 +35,14 @@ export default function PlanetTesimal() {
            <h3 class="text-accent font-light uppercase font-font-sans-cond text-lg">
             Avg. distance
            </h3>
-           <p class="text-white text-2xl">{destination.distance}</p>
+           <p class="text-white text-2xl font-serif">{destination.distance}</p>
           </div>
 
           <div class="flex flex-col gap-2">
            <h3 class="text-accent font-light uppercase font-font-sans-cond text-lg">
             Est. Travel Time
            </h3>
-           <p class="text-white text-2xl">{destination.distance}</p>
+           <p class="text-white text-2xl font-serif">{destination.travel}</p>
           </div>
          </div>
         </div>

@@ -2,14 +2,13 @@
 import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
 import PlanetTesimal from "../components/preact/PlanetTesimal";
-import DestinationTab from "../components/preact/DestinationTab";
 ---
 
 <Layout title="Destination">
  <div id="body-container" class="w-full h-screen">
   <Header />
 
-  <div id="dest-container" class="mx-auto w-4/5 my-8 py-8">
+  <div id="dest-container" class="mx-auto w-full md:w-4/5 my-8 py-8">
    <h1
     class="text-white/25 font-font-sans-cond text-base sm:text-lg md:text-xl font-bold uppercase tracking-letterSpacing1"
    >
@@ -29,6 +28,7 @@ import DestinationTab from "../components/preact/DestinationTab";
  #body-container {
   background-image: url(/assets/destination/background-destination-mobile.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
  }
 
  @media (min-width: 567px) {
@@ -41,17 +41,5 @@ import DestinationTab from "../components/preact/DestinationTab";
   #body-container {
    background-image: url(/assets/destination/background-destination-desktop.jpg);
   }
- }
-
- #tabs-destination li {
-  @apply border-b-2 border-b-white/0 py-4 hover:border-white/50;
- }
-
- #tabs-destination li > a {
-  @apply text-accent hover:text-white aria-[selected=true]:text-white;
- }
-
- #tabs-destination li:has(a.current) {
-  @apply border-b-2 border-b-white;
  }
 </style>

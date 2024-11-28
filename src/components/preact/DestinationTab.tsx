@@ -14,7 +14,7 @@ export default function DestinationTab() {
    <ul class=" flex items-center gap-8 " id="tabs-destination">
     {tabs?.map((tab) => (
      <li
-      class="uppercase font-light font-font-sans-cond"
+      class="uppercase font-light font-font-sans-cond  border-b-2 border-b-white/0 py-4 hover:border-b-white/50 has-[a.current]:border-b-2 has-[a.current]:border-b-white"
       onClick={() => {
        handleTabClick(tab);
       }}
@@ -22,7 +22,11 @@ export default function DestinationTab() {
       {/* @ts-expect-error */}
       <a
        href={`#${tab}`}
-       class={"text-base sm:text-xl"}
+       class={
+        selectedTab.value === tab
+         ? "current sm:text-xl"
+         : "text-accent hover:text-white aria-[selected=true]:text-white sm:text-xl"
+       }
        id={tab}
        aria-selected={tab}
       >
