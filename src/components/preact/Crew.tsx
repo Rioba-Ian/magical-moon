@@ -11,14 +11,24 @@ export default function CrewComponent() {
   <section class={"grid grid-cols-1 md:grid-cols-2"}>
    <article class={" space-y-8 grid grid-cols-1 grid-rows-6"}>
     <div class={"row-span-5 place-self-center space-y-4"}>
-     <h2 class={"uppercase text-2xl font-serif text-white/50"}>Commander</h2>
-     <h3 class={"uppercase text-3xl font-serif text-white"}>Douglas Hurley</h3>
+     {crewData
+      ?.filter((tab) => tab.active)
+      ?.map((data) => (
+       <>
+        <h2 class={"uppercase text-2xl font-font-serif text-white/50"}>
+         {data.role}
+        </h2>
+        <h3 class={"uppercase text-3xl font-serif text-white"}>{data.tab}</h3>
 
-     <p class={"py-4 text-accent/90 text-base md:text-[20px] leading-8"}>
-      Douglas Gerald Hurley is an American engineer, former Marine Corps pilot
-      and former NASA astronaut. He launched into space for the third time as
-      commander of Crew Dragon Demo-2.
-     </p>
+        <p
+         class={
+          "py-4 text-accent/90 text-base md:text-lg leading-9 tracking-letterSpacing7"
+         }
+        >
+         {data.description}
+        </p>
+       </>
+      ))}
     </div>
 
     {/* dots for navigation */}
