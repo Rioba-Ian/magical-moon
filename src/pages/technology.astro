@@ -1,9 +1,43 @@
 ---
 import Header from "../components/Header.astro";
+import SpaceTechnology from "../components/preact/technology";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Destination">
- <Header />
- <h1>Technology</h1>
+ <div id="body-container" class="w-full h-screen">
+  <Header />
+
+  <div id="dest-container" class="mx-auto w-full md:w-4/5 my-4 py-8">
+   <h1
+    class="text-white/25 font-font-sans-cond text-base text-center sm:text-left sm:text-lg md:text-xl font-bold uppercase tracking-letterSpacing1"
+   >
+    03 <span class="uppercase text-white/100 font-light">Space launch 101</span>
+   </h1>
+
+   <main class="m-4 py-8">
+    <SpaceTechnology client:visible />
+   </main>
+  </div>
+ </div>
 </Layout>
+
+<style>
+ #body-container {
+  background-image: url(/assets/technology/background-technology-mobile.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+ }
+
+ @media (min-width: 567px) {
+  #body-container {
+   background-image: url(/assets/technology/background-technology-tablet.jpg);
+  }
+ }
+
+ @media (min-width: 760px) {
+  #body-container {
+   background-image: url(/assets/technology/background-technology-desktop.jpg);
+  }
+ }
+</style>
