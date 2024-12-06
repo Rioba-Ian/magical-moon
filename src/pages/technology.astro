@@ -8,16 +8,22 @@ import Layout from "../layouts/Layout.astro";
  <div id="body-container" class="w-full h-screen">
   <Header />
 
-  <div id="dest-container" class="mx-auto w-full md:w-4/5 my-4 py-8">
-   <h1
-    class="text-white/25 font-font-sans-cond text-base text-center sm:text-left sm:text-lg md:text-xl font-bold uppercase tracking-letterSpacing1"
-   >
-    03 <span class="uppercase text-white/100 font-light">Space launch 101</span>
-   </h1>
+  <div
+   id="dest-container"
+   class="mx-auto w-full my-4 py-8 flex items-center justify-end"
+  >
+   <div class="md:w-[90%]">
+    <h1
+     class="text-white/25 font-font-sans-cond text-base text-center sm:text-left sm:text-lg md:text-xl font-bold uppercase tracking-letterSpacing1"
+    >
+     03 <span class="uppercase text-white/100 font-light">Space launch 101</span
+     >
+    </h1>
 
-   <main class="m-4 py-8">
-    <SpaceTechnology client:visible />
-   </main>
+    <main class="py-4">
+     <SpaceTechnology client:visible />
+    </main>
+   </div>
   </div>
  </div>
 </Layout>

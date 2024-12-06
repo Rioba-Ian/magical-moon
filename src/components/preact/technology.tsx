@@ -1,20 +1,15 @@
 import { useComputed, useSignal } from "@preact/signals";
 import technologyData from "./technology.json";
-import LinkTab from "./atoms/Link";
-import { Button } from "./Crew";
+
 export default function SpaceTechnology() {
  const selectedTechnologyTab = useSignal("launch");
  const TechnologyTabToRender = useComputed(() =>
   technologyData?.filter((tab) => tab.tab === selectedTechnologyTab.value)
  );
  return (
-  <section
-   class={
-    "grid grid-cols-1 md:grid-cols-2 place-content-center relative  py-16"
-   }
-  >
-   <article class={" place-self-end flex items-center gap-8"}>
-    <ul className="space-y-4 self-start">
+  <section class={"flex  items-center justify-between py-16"}>
+   <article class={"basis-1/2 flex grow items-center gap-8 "}>
+    <ul className="space-y-4">
      {technologyData?.map((tab) => (
       <li>
        <button
@@ -51,15 +46,17 @@ export default function SpaceTechnology() {
        >
         {tab.name}
        </h3>
-       <p class={"text-pretty"}>{tab.description}</p>
+       <p class={"text-pretty text-accent"}>{tab.description}</p>
       </div>
      ))}
     </div>
    </article>
-   <article class={"place-self-center grid-cols-subgrid absolute -right-10"}>
-    {TechnologyTabToRender.value?.map((tab) => (
-     <img src={tab.img} alt={tab.name} class={"scale-125"} />
-    ))}
+   <article class={"basis-1/2 flex justify-end grow-0"}>
+    <div>
+     {TechnologyTabToRender.value?.map((tab) => (
+      <img src={tab.img} alt={tab.name} class={"scale-115"} />
+     ))}
+    </div>
    </article>
   </section>
  );
