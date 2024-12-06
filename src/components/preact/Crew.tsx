@@ -7,6 +7,7 @@ import {
 } from "@preact/signals";
 import crewData from "./crew.json";
 import type { HTMLAttributes } from "preact/compat";
+import type { ComponentChildren } from "preact";
 
 export default function CrewComponent() {
  const selectedCrewTab = useSignal(1);
@@ -91,16 +92,18 @@ export default function CrewComponent() {
 
 interface CrewTabButtonProps extends HTMLAttributes<HTMLButtonElement> {
  active: boolean;
+ children?: ComponentChildren;
 }
 
-const Button = (props: CrewTabButtonProps) => {
- const { active, ...rest } = props;
+export const Button = (props: CrewTabButtonProps) => {
+ const { active, children, ...rest } = props;
  return (
   <button
    class={`${active ? "bg-white" : "bg-white/50"} p-2 rounded-full`}
    {...rest}
   >
    <span class={"sr-only"}></span>
+   {children}
   </button>
  );
 };

@@ -3,10 +3,10 @@ import { cn } from "../../../utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import type { ComponentChildren } from "preact";
 
-const anchorVariants = cva("", {
+const anchorVariants = cva("transition-colors duration-150 ", {
  variants: {
   variant: {
-   circle: "",
+   circle: "rounded-full",
    default: "",
   },
  },
@@ -24,10 +24,14 @@ interface LinkTabProps
 }
 
 export default function LinkTab(props: LinkTabProps) {
- const { class: ClassName, asChild, children, ...rest } = props;
+ const { class: ClassName, asChild, variant, children, ...rest } = props;
+
+ if (asChild) {
+  return children;
+ }
 
  return (
-  <a class={cn(ClassName, "")} {...rest}>
+  <a class={cn(anchorVariants({ variant }), ClassName)} {...rest}>
    {children}
   </a>
  );
