@@ -7,9 +7,17 @@ export default function SpaceTechnology() {
   technologyData?.filter((tab) => tab.tab === selectedTechnologyTab.value)
  );
  return (
-  <section class={"flex  items-center justify-between py-16"}>
-   <article class={"basis-1/2 flex grow items-center gap-8 "}>
-    <ul className="space-y-4">
+  <section
+   class={
+    "flex  md:flex-row flex-col-reverse items-center justify-between py-16"
+   }
+  >
+   <article
+    class={
+     "basis-1/2 flex flex-col md:flex-row grow items-center gap-8 py-4 md:py-0"
+    }
+   >
+    <ul className="space-y-4 flex items-baseline justify-start gap-4 md:block">
      {technologyData?.map((tab) => (
       <li>
        <button
@@ -22,7 +30,7 @@ export default function SpaceTechnology() {
          tab.tab === selectedTechnologyTab.value
           ? "bg-white"
           : "bg-transparent border border-gray-500 text-white"
-        } px-8 py-6 text-dark rounded-full `}
+        } sm:px-6 sm:py-4 md:px-8 md:py-6 text-dark rounded-full `}
        >
         <span class={"text-xl m-2 font-font-serif"}>{tab.id}</span>
        </button>
@@ -31,7 +39,7 @@ export default function SpaceTechnology() {
     </ul>
     <div>
      {TechnologyTabToRender.value?.map((tab) => (
-      <div class="py-4">
+      <div class="py-4 px-4 md:px-0 text-center md:text-left">
        <h2
         class={
          "uppercase text-xl font-light md:text-2xl font-font-serif text-white/50"
@@ -46,7 +54,9 @@ export default function SpaceTechnology() {
        >
         {tab.name}
        </h3>
-       <p class={"text-pretty text-accent"}>{tab.description}</p>
+       <p class={"text-pretty mx-auto text-accent w-4/5 md:w-[90%]"}>
+        {tab.description}
+       </p>
       </div>
      ))}
     </div>
@@ -54,7 +64,12 @@ export default function SpaceTechnology() {
    <article class={"basis-1/2 flex justify-end grow-0"}>
     <div>
      {TechnologyTabToRender.value?.map((tab) => (
-      <img src={tab.img} alt={tab.name} class={"scale-115"} />
+      <img
+       id="technology-image"
+       src={tab.img}
+       alt={tab.name}
+       class={"scale-115"}
+      />
      ))}
     </div>
    </article>
