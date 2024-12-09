@@ -64,15 +64,34 @@ export default function SpaceTechnology() {
    <article class={"basis-1/2 flex justify-end grow-0"}>
     <div>
      {TechnologyTabToRender.value?.map((tab) => (
-      <img
-       id="technology-image"
-       src={tab.img}
-       alt={tab.name}
-       class={"scale-115"}
-      />
+      <picture>
+       {/* mobile image */}
+       <source media="(max-width: 759.99px)" srcset={tab.imgLandspace} />
+       {/* <!-- Desktop Image --> */}
+       <source media="(min-width: 760px)" srcset={tab.imgPotrait} />
+       {/* <!-- Fallback Image --> */}
+       <img
+        aria-hidden="true"
+        loading="lazy"
+        decoding="async"
+        src={tab.imgPotrait}
+        alt={tab.title}
+        width="1920"
+        height="1280"
+       />
+      </picture>
      ))}
     </div>
    </article>
   </section>
  );
 }
+
+/*
+
+<img
+       id="technology-image"
+       alt={tab.name}
+       class={"scale-115"}
+      />
+*/

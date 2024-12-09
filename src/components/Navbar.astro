@@ -11,27 +11,29 @@ const navItems = [
 ];
 ---
 
-<nav>
- <ul
-  id="primary-navigation"
-  data-visible="false"
-  class="flex gap-2 md:gap-16 font-font-sans-cond"
- >
-  {
-   navItems.map((item) => (
-    <li>
-     <A
-      href={item.href}
-      variant={"navbar"}
-      class={`${currentPath === item.href ? "current" : ""}`}
-     >
-      <span>{item.metaText}</span>
-      {item.label}
-     </A>
-    </li>
-   ))
-  }
- </ul>
+<nav class="grow ml-[20%]">
+ <div id="nav-container" class="flex items-center justify-end">
+  <ul
+   id="primary-navigation"
+   data-visible="false"
+   class="flex gap-2 md:gap-16 font-font-sans-cond"
+  >
+   {
+    navItems.map((item) => (
+     <li>
+      <A
+       href={item.href}
+       variant={"navbar"}
+       class={`${currentPath === item.href ? "current" : ""}`}
+      >
+       <span>{item.metaText}</span>
+       {item.label}
+      </A>
+     </li>
+    ))
+   }
+  </ul>
+ </div>
 </nav>
 
 <style>
@@ -51,7 +53,7 @@ const navItems = [
   @apply bg-white/5 backdrop-blur-xl md:px-8;
  }
 
- @media (max-width: 35rem) {
+ @media (max-width: 40rem) {
   #primary-navigation {
    position: fixed;
    padding: min(6rem, 20vh) 2rem;
